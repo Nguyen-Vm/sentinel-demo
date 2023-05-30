@@ -1,3 +1,1 @@
-启动sentinel-dashboard
-
-再启动该项目，指定VM options：-Dcsp.sentinel.dashboard.server=localhost:8080
+先启动sentinel-dashboard，集成了Spring Cloud Alibaba Sentinel，启动该项目时，不用再指定VM options。
