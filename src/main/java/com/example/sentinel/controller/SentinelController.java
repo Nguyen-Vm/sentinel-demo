@@ -1,8 +1,12 @@
 package com.example.sentinel.controller;
 
+import com.example.sentinel.service.ParamFlowService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author 阮威敏
@@ -12,8 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SentinelController {
 
+    @Resource
+    private ParamFlowService paramFlowService;
+
     @GetMapping("/demo")
-    public String demo() {
+    public String demo(@RequestParam(value = "paramA", defaultValue = "") String paramA,
+                       @RequestParam(value = "paramB", defaultValue = "") String paramB) {
+        paramFlowService.paramFlow(paramA, paramB);
         return "demo";
     }
 }
