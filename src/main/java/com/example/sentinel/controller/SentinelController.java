@@ -19,10 +19,15 @@ public class SentinelController {
     @Resource
     private ParamFlowService paramFlowService;
 
-    @GetMapping("/demo")
-    public String demo(@RequestParam(value = "paramA", defaultValue = "") String paramA,
-                       @RequestParam(value = "paramB", defaultValue = "") String paramB) {
+    @GetMapping("/paramFlow")
+    public String paramFlow(@RequestParam(value = "paramA", defaultValue = "") String paramA,
+                            @RequestParam(value = "paramB", defaultValue = "") String paramB) {
         paramFlowService.paramFlow(paramA, paramB);
-        return "demo";
+        return "paramFlow";
+    }
+
+    @GetMapping("/degrade")
+    public void degrade() {
+        throw new RuntimeException("exception occurs");
     }
 }
